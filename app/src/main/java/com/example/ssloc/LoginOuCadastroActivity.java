@@ -6,16 +6,22 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 
+import com.example.ssloc.databinding.ActivityLoginOuCadastroBinding;
+import com.squareup.picasso.Picasso;
+
 public class LoginOuCadastroActivity extends AppCompatActivity {
     private ActionBar bar;
+    private ActivityLoginOuCadastroBinding vb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_ou_cadastro);
+        vb = ActivityLoginOuCadastroBinding.inflate(getLayoutInflater());
+        setContentView(vb.getRoot());
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         bar = getSupportActionBar();
-        bar.setTitle("Login");
-
+        bar.setTitle("Credenciamento");
+        Picasso.get().load(R.raw.logoparada).into(vb.imageView);
     }
 }
