@@ -1,4 +1,4 @@
-package com.example.ssloc;
+package com.example.ssloc.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.ssloc.R;
+import com.example.ssloc.activitys.LoginOuCadastroActivity;
 
 public class MainActivity extends AppCompatActivity {
 
