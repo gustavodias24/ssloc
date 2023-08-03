@@ -9,12 +9,21 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.ssloc.databinding.ActivityCadastroBinding;
 import com.example.ssloc.databinding.LayoutCarregandoBinding;
 import com.example.ssloc.models.CepModel;
+import com.example.ssloc.models.MsgModel;
+import com.example.ssloc.models.UsuarioModel;
+import com.example.ssloc.services.ServiceApi;
 import com.example.ssloc.services.ServiceCep;
 
 import retrofit2.Call;
@@ -24,10 +33,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CadastroActivity extends AppCompatActivity {
+
+    private UsuarioModel usuarioModel;
+    private static final int REQUEST_CNH_IMAGE_SELECT = 1;
+    private static final int REQUEST_COMPROVANTE_IMAGE_SELECT = 2;
     private Dialog dialog_carregando;
     private ActivityCadastroBinding vb;
-    private Retrofit retrofitCep;
+    private Retrofit retrofitCep, retrofitCadastro;
     private ServiceCep serviceCep;
+    private ServiceApi serviceApi;
     private ActionBar bar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +50,24 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(vb.getRoot());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        usuarioModel = new UsuarioModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                null,
+                null,
+                null
+        );
+
         bar = getSupportActionBar();
         bar.setTitle("Cadastro");
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setDisplayShowHomeEnabled(true);
 
         criarRetrofitCep();
+        criarRetrofitCadastro();
         criarAlertCarregando();
 
         vb.buscarEnderecoBtn.setOnClickListener( buscarEnd -> {
@@ -57,6 +83,139 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
+        vb.cnhSendBtn.setOnClickListener( cnhView -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, REQUEST_CNH_IMAGE_SELECT);
+        });
+
+        vb.comprovanteSendBtn.setOnClickListener( comprovanteView -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, REQUEST_COMPROVANTE_IMAGE_SELECT);
+        });
+
+        vb.finalizarBtn.setOnClickListener( finalView -> {
+            clearErros();
+            String msgError = "Esse campo é obrigatório!";
+            String msgSenha = "As senhas não estão iguais!";
+
+            String senha1,senha2;
+            senha1 = vb.passField.getEditText().getText().toString().trim();
+            senha2 = vb.repeatPassField.getEditText().getText().toString().trim();
+
+            String loginString = vb.loginField.getEditText().getText().toString().trim();
+            if (!loginString.isEmpty()) {
+                usuarioModel.setLogin(loginString);
+                String emailString = vb.emailField.getEditText().getText().toString().trim();
+                if (!emailString.isEmpty()) {
+                    usuarioModel.setEmail(emailString);
+                    String telefoneString = vb.foneField.getEditText().getText().toString().trim();
+                    if (!telefoneString.isEmpty()) {
+                        usuarioModel.setTelefone(telefoneString);
+                        String validadeCNHString = vb.validadeField.getEditText().getText().toString().trim();
+                        if (!validadeCNHString.isEmpty()) {
+                            usuarioModel.setValidadeCNH(validadeCNHString);
+                            if (usuarioModel.getCep() != null) {
+                                if (!senha1.isEmpty()){
+                                    if(!senha2.isEmpty()){
+                                        if ( senha2.equals(senha1)){
+                                            usuarioModel.setSenha(senha1);
+                                            if (usuarioModel.getFotoCNH() != null){
+                                                if(usuarioModel.getFotoComprovante() != null){
+                                                    criarCadastro();
+                                                }else{
+                                                    Toast.makeText(getApplicationContext(), "Envie a foto do comprovante!",Toast.LENGTH_LONG).show();
+                                                }
+                                            }else{
+                                                Toast.makeText(getApplicationContext(), "Envie a foto da CNH!",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else{
+                                            vb.repeatPassField.setError(msgSenha);
+                                        }
+                                    }else{
+                                        vb.repeatPassField.setError(msgError);
+                                    }
+                                }else{
+                                    vb.passField.setError(msgError);
+                                }
+                            }else{
+                                vb.cepField.setError(msgError);
+                            }
+                        }else{
+                            vb.validadeField.setError(msgError);
+                        }
+                    }else{
+                        vb.foneField.setError(msgError);
+                    }
+                }else{
+                    vb.emailField.setError(msgError);
+                }
+            }else{
+                vb.loginField.setError(msgError);
+            }
+        });
+    }
+
+    public void clearErros(){
+        vb.passField.setError(null);
+        vb.repeatPassField.setError(null);
+        vb.loginField.setError(null);
+        vb.emailField.setError(null);
+        vb.foneField.setError(null);
+        vb.validadeField.setError(null);
+        vb.cepField.setError(null);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CNH_IMAGE_SELECT && resultCode == RESULT_OK && data != null) {
+            // Obter a URI da imagem selecionada
+            Uri selectedImageUri = data.getData();
+            
+            // Obter o nome do arquivo da imagem selecionada
+            String imageName = getFileNameFromUri(selectedImageUri);
+
+            // Exibir o nome da imagem no TextView
+            vb.cnhNameText.setText(imageName);
+
+            // Agora, você pode usar a URI da imagem (selectedImageUri) para fazer o upload via Retrofit
+            usuarioModel.setFotoCNH(selectedImageUri);
+            // ou qualquer outra operação necessária.
+        }
+        else if (requestCode == REQUEST_COMPROVANTE_IMAGE_SELECT && resultCode == RESULT_OK && data != null){
+            // Obter a URI da imagem selecionada
+            Uri selectedImageUri = data.getData();
+
+            // Obter o nome do arquivo da imagem selecionada
+            String imageName = getFileNameFromUri(selectedImageUri);
+
+            // Exibir o nome da imagem no TextView
+            vb.comprovanteNameText.setText(imageName);
+
+            // Agora, você pode usar a URI da imagem (selectedImageUri) para fazer o upload via Retrofit
+            usuarioModel.setFotoComprovante(selectedImageUri);
+            // ou qualquer outra operação necessária.
+        }
+    }
+    // Método para obter o nome do arquivo da URI
+    @SuppressLint("Range")
+    private String getFileNameFromUri(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
     @Override
@@ -68,6 +227,15 @@ public class CadastroActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void criarRetrofitCadastro(){
+        retrofitCadastro = new Retrofit
+                .Builder()
+                .baseUrl("https://apissloc.vercel.app/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        serviceApi = retrofitCadastro.create(ServiceApi.class);
+    }
     private void criarRetrofitCep(){
         retrofitCep = new Retrofit.Builder()
                 .baseUrl("https://viacep.com.br/")
@@ -86,6 +254,7 @@ public class CadastroActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     dialog_carregando.dismiss();
                     CepModel cepModel = response.body();
+                    usuarioModel.setCep(cepModel);
                     vb.enderecoText.setText(
                             "Logradouro: " + cepModel.getLogradouro() + "\n" +
                                     "complemento: " + cepModel.getComplemento() + "\n" +
@@ -107,6 +276,28 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
+    private void criarCadastro(){
+        dialog_carregando.show();
+        serviceApi.criarCadastro(usuarioModel).enqueue(new Callback<MsgModel>() {
+            @Override
+            public void onResponse(Call<MsgModel> call, Response<MsgModel> response) {
+                MsgModel msgModel = response.body();
+                if ( response.isSuccessful() ){
+                    // salvar no sharedPreferences e passar pra proxima tela
+                    Toast.makeText(CadastroActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
+                    dialog_carregando.dismiss();
+                }else{
+                    Toast.makeText(CadastroActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
+                    dialog_carregando.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MsgModel> call, Throwable t) {
+
+            }
+        });
+    }
     private void criarAlertCarregando(){
         AlertDialog.Builder b = new AlertDialog.Builder(CadastroActivity.this);
         b.setView(

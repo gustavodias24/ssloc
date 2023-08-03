@@ -27,6 +27,7 @@ public class LoginOuCadastroActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         bar = getSupportActionBar();
+        assert bar != null;
         bar.setTitle("Credenciamento");
         Picasso.get().load(R.raw.logoparada).into(vb.imageView);
 
