@@ -7,11 +7,73 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
   >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activitys.MenuActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.MenuActivity">
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="129dp"
+            tools:srcCompat="@raw/logoparada" />
+
+        <Button
+            android:id="@+id/planosBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Veículos e planos"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/meusPlanosBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Meus planos"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/manuntencaoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Manutenção"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/encerrarContratoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="encerrar Contrato"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/suporteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Contatos/Suporte"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
     </LinearLayout>
 </ScrollView>
