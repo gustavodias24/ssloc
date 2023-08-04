@@ -1,8 +1,11 @@
 package com.example.ssloc.models;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 
-public class UsuarioModel {
+import java.io.Serializable;
+
+public class UsuarioModel{
     String login, email, telefone, validadeCNH, senha = "";
     CepModel cep;
     Uri fotoCNH, fotoComprovante;

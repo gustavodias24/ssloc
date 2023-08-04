@@ -11,4 +11,7 @@ public interface ServiceApi {
 
     @POST("cadastro")
     Call<MsgModel> criarCadastro(@Body UsuarioModel usuarioModel);
+
+    @POST("login")
+    Call<MsgModel>fazerLogin(@Body UsuarioModel usuarioModel);
 }

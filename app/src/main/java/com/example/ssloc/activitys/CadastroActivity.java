@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import com.example.ssloc.models.MsgModel;
 import com.example.ssloc.models.UsuarioModel;
 import com.example.ssloc.services.ServiceApi;
 import com.example.ssloc.services.ServiceCep;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +36,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CadastroActivity extends AppCompatActivity {
-
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     private UsuarioModel usuarioModel;
     private static final int REQUEST_CNH_IMAGE_SELECT = 1;
     private static final int REQUEST_COMPROVANTE_IMAGE_SELECT = 2;
@@ -49,6 +53,9 @@ public class CadastroActivity extends AppCompatActivity {
         vb = ActivityCadastroBinding.inflate(getLayoutInflater());
         setContentView(vb.getRoot());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        preferences = getSharedPreferences("UsuarioPreferences", Context.MODE_PRIVATE);
+        editor = preferences.edit();
 
         usuarioModel = new UsuarioModel(
                 "",
@@ -283,11 +290,17 @@ public class CadastroActivity extends AppCompatActivity {
             public void onResponse(Call<MsgModel> call, Response<MsgModel> response) {
                 MsgModel msgModel = response.body();
                 if ( response.isSuccessful() ){
-                    // salvar no sharedPreferences e passar pra proxima tela
-                    Toast.makeText(CadastroActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
-                    dialog_carregando.dismiss();
+                    if ( !msgModel.getError() ){
+                        editor.putString("DadosUsuario", usuarioModel.getLogin());
+                        editor.apply();
+                        startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+                        Toast.makeText(CadastroActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        Toast.makeText(CadastroActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(CadastroActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroActivity.this, "Problema de conexão, tente novamente.", Toast.LENGTH_SHORT).show();
                     dialog_carregando.dismiss();
                 }
             }
