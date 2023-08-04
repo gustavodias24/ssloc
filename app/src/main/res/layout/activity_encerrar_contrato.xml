@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+  >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.EncerrarContratoActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            tools:srcCompat="@raw/logoparada" />
+
+        <ImageView
+            android:id="@+id/encerramento"
+            android:layout_width="match_parent"
+            android:layout_height="187dp"
+            tools:srcCompat="@raw/termoencerracao" />
+
+        <include
+            layout="@layout/contrato_encerramento"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <RadioButton
+            android:id="@+id/checkTermos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Li e aceito os termos do contrato" />
+
+        <Button
+            android:id="@+id/encerrarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="Encerrar"
+            android:textColor="#FF0000" />
+
+    </LinearLayout></ScrollView>

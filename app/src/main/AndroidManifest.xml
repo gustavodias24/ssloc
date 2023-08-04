@@ -17,6 +17,11 @@
         android:theme="@style/Theme.Ssloc"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="portrait"
+            android:name=".activitys.EncerrarContratoActivity"
+            android:exported="false" />
+        <activity
+            android:screenOrientation="portrait"
             android:name=".activitys.SuporteActivity"
             android:exported="false" />
         <activity
