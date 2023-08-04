@@ -7,14 +7,19 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.ssloc.R;
 import com.example.ssloc.databinding.ActivityEncerrarContratoBinding;
+import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
 
 public class EncerrarContratoActivity extends AppCompatActivity {
 
@@ -40,6 +45,14 @@ public class EncerrarContratoActivity extends AppCompatActivity {
         criar_dialog_encerrado();
 
         vb.encerrarBtn.setOnClickListener( encerrarView -> {
+            SignaturePad signaturePad = vb.assinaturaPad;
+            Bitmap signatureBitmap = signaturePad.getSignatureBitmap();
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            signatureBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            String base64Image = Base64.encodeToString(byteArray, Base64.DEFAULT); // enviar sapoha pro back
+
             if ( vb.checkTermos.isChecked() ){
                 dialog_encerrado.show();
                 vb.encerrarBtn.setText("Encerrado");

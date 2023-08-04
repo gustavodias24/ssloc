@@ -32,6 +32,20 @@
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Assinatura:"
+            android:textColor="#5E5B5B" />
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/assinaturaPad"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:penColor="@android:color/black" />
+
         <RadioButton
             android:id="@+id/checkTermos"
             android:layout_width="wrap_content"

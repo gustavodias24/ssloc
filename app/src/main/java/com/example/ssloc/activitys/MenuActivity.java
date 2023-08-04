@@ -24,7 +24,9 @@ public class MenuActivity extends AppCompatActivity {
 
 
         Picasso.get().load(R.raw.logoparada).into(vb.imageView2);
-
+        vb.manuntencaoBtn.setOnClickListener( manuView -> {
+            startActivity(new Intent(getApplicationContext(), ManuntecaoActivity.class));
+        });
         vb.encerrarContratoBtn.setOnClickListener( encerrarView -> {
             startActivity(new Intent(getApplicationContext(), EncerrarContratoActivity.class));
         });

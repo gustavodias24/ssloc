@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.ManuntecaoActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            tools:srcCompat="@raw/logoparada" />
+
+        <ImageView
+            android:id="@+id/atencao"
+            android:layout_width="match_parent"
+            android:layout_height="174dp"
+            tools:srcCompat="@raw/atencaooleo" />
+
+        <TextView
+            android:id="@+id/trocaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aguardando imagem"
+            android:textColor="#8C8C8C" />
+
+        <Button
+            android:id="@+id/trocaBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Enviar a foto da troca de óleo"
+            android:textColor="#FF0000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/rebicoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Aguardando imagem"
+            android:textColor="#8C8C8C" />
+
+        <Button
+            android:id="@+id/reciboBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Enviar a foto do recibo da troca"
+            android:textColor="#FF0000"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/dica"
+            android:layout_width="match_parent"
+            android:layout_height="179dp"
+            tools:srcCompat="@raw/dicaoleo" />
+    </LinearLayout>
+
+</ScrollView>
