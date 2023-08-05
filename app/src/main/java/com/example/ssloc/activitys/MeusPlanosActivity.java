@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.ssloc.R;
 import com.example.ssloc.databinding.ActivityMeusPlanosBinding;
 import com.example.ssloc.databinding.LayoutCarregandoBinding;
+import com.example.ssloc.models.ManuModel;
 import com.example.ssloc.models.PlanoModel;
 import com.example.ssloc.services.ServiceApi;
 import com.example.ssloc.services.ServiceCep;
@@ -281,4 +282,6 @@ public class MeusPlanosActivity extends AppCompatActivity {
         b.setCancelable(false);
         dialog_carregando = b.create();
     }
+
+
 }

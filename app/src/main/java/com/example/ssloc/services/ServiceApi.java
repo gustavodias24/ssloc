@@ -1,5 +1,6 @@
 package com.example.ssloc.services;
 
+import com.example.ssloc.models.ManuModel;
 import com.example.ssloc.models.MsgModel;
 import com.example.ssloc.models.PlanoModel;
 import com.example.ssloc.models.UsuarioModel;
@@ -21,4 +22,13 @@ public interface ServiceApi {
 
     @POST("exibirplanostatus")
     Call<PlanoModel>verStatus(@Body PlanoModel planoModel);
+
+    @POST("templanos")
+    Call<MsgModel>temPlanos(@Body UsuarioModel usuarioModel);
+
+    @POST("manutencaostatus")
+    Call<MsgModel>temManu(@Body ManuModel manuModel);
+
+    @POST("manutencao")
+    Call<MsgModel>criarManu(@Body ManuModel manuModel);
 }

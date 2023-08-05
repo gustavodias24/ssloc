@@ -30,7 +30,7 @@
         <include
             layout="@layout/contrato_encerramento"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="500dp" />
 
         <TextView
             android:id="@+id/textView2"

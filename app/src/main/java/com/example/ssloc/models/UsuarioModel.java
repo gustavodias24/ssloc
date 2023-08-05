@@ -18,6 +18,10 @@ public class UsuarioModel{
         this.senha = senha;
     }
 
+    public UsuarioModel(String login) {
+        this.login = login;
+    }
+
     public UsuarioModel() {
     }
 
