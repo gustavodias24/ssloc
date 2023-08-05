@@ -10,6 +10,8 @@ public class UsuarioModel{
     CepModel cep;
     Uri fotoCNH, fotoComprovante;
 
+    int numeroCasa;
+
     public String getSenha() {
         return senha;
     }
@@ -25,7 +27,7 @@ public class UsuarioModel{
     public UsuarioModel() {
     }
 
-    public UsuarioModel(String login, String email, String telefone, String validadeCNH, String senha, CepModel cep, Uri fotoCNH, Uri fotoComprovante) {
+    public UsuarioModel(String login, String email, String telefone, String validadeCNH, String senha, CepModel cep, Uri fotoCNH, Uri fotoComprovante, int numeroCasa) {
         this.login = login;
         this.email = email;
         this.telefone = telefone;
@@ -34,10 +36,19 @@ public class UsuarioModel{
         this.cep = cep;
         this.fotoCNH = fotoCNH;
         this.fotoComprovante = fotoComprovante;
+        this.numeroCasa = numeroCasa;
     }
 
     public String getLogin() {
         return login;
+    }
+
+    public int getNumeroCasa() {
+        return numeroCasa;
+    }
+
+    public void setNumeroCasa(int numeroCasa) {
+        this.numeroCasa = numeroCasa;
     }
 
     public void setLogin(String login) {

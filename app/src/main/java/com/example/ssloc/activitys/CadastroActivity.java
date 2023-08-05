@@ -65,7 +65,8 @@ public class CadastroActivity extends AppCompatActivity {
                 "",
                 null,
                 null,
-                null
+                null,
+                0
         );
 
         bar = getSupportActionBar();
@@ -108,6 +109,8 @@ public class CadastroActivity extends AppCompatActivity {
             String senha1,senha2;
             senha1 = vb.passField.getEditText().getText().toString().trim();
             senha2 = vb.repeatPassField.getEditText().getText().toString().trim();
+
+            usuarioModel.setNumeroCasa( Integer.parseInt(vb.nCasaField.getEditText().getText().toString()));
 
             String loginString = vb.loginField.getEditText().getText().toString().trim();
             if (!loginString.isEmpty()) {

@@ -31,4 +31,7 @@ public interface ServiceApi {
 
     @POST("manutencao")
     Call<MsgModel>criarManu(@Body ManuModel manuModel);
+
+    @POST("apagarplano")
+    Call<MsgModel>apagarPlano(@Body PlanoModel planoModel);
 }
