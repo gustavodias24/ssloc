@@ -1,6 +1,7 @@
 package com.example.ssloc.services;
 
 import com.example.ssloc.models.MsgModel;
+import com.example.ssloc.models.PlanoModel;
 import com.example.ssloc.models.UsuarioModel;
 
 import retrofit2.Call;
@@ -14,4 +15,10 @@ public interface ServiceApi {
 
     @POST("login")
     Call<MsgModel>fazerLogin(@Body UsuarioModel usuarioModel);
+
+    @POST("criarplano")
+    Call<PlanoModel>criarPlano(@Body PlanoModel planoModel);
+
+    @POST("exibirplanostatus")
+    Call<PlanoModel>verStatus(@Body PlanoModel planoModel);
 }

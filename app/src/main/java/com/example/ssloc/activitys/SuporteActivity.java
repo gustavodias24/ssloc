@@ -35,7 +35,7 @@ public class SuporteActivity extends AppCompatActivity {
         Picasso.get().load(R.raw.qrcodesuporte).into(vb.qrCode);
 
         vb.zapBtn.setOnClickListener( zapView -> {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send/?phone=559691017925&text&type=phone_number&app_absent=0")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send/?phone=5596991466663&text&type=phone_number&app_absent=0")));
         });
     }
 

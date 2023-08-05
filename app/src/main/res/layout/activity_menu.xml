@@ -22,23 +22,12 @@
             tools:srcCompat="@raw/logoparada" />
 
         <Button
-            android:id="@+id/planosBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#000000"
-            android:padding="16dp"
-            android:text="Veículos e planos"
-            android:textColor="#FEFE01"
-            android:textStyle="bold"
-            app:iconTint="#000000" />
-
-        <Button
             android:id="@+id/meusPlanosBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#000000"
             android:padding="16dp"
-            android:text="Meus planos"
+            android:text="Meus planos e Pagamentos"
             android:textColor="#FEFE01"
             android:textStyle="bold"
             app:iconTint="#000000" />
@@ -75,5 +64,17 @@
             android:textColor="#FEFE01"
             android:textStyle="bold"
             app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/sairBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Sair"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
     </LinearLayout>
 </ScrollView>

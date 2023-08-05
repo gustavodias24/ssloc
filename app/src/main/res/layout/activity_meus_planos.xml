@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#000000"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.MeusPlanosActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            tools:srcCompat="@raw/logoparada" />
+
+        <ImageView
+            android:id="@+id/qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            tools:srcCompat="@raw/qrcodeplano900" />
+
+        <Button
+            android:id="@+id/proxBtn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#000000"
+            android:drawableRight="@drawable/baseline_arrow_forward_24"
+            android:text="Próximo plano" />
+
+        <TextView
+            android:id="@+id/imageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Aguardando Imagem"
+            android:textColor="#888888" />
+
+        <Button
+            android:id="@+id/enviarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Enviar comprovante do pagamento Pix"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/validadeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Válido por 1 ano."
+            android:textColor="#000000"
+            android:textSize="24sp" />
+    </LinearLayout>
+</ScrollView>
