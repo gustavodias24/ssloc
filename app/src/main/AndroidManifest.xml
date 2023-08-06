@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -18,8 +23,16 @@
         tools:targetApi="31">
         <activity
             android:screenOrientation="portrait"
-            android:name=".activitys.MeusPlanosActivity"
+            android:name=".activitys.ExibirUsuarioActivity"
             android:exported="false" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".activitys.AdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.MeusPlanosActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activitys.ManuntecaoActivity"
             android:exported="false"

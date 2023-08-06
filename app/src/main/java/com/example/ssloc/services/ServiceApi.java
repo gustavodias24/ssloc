@@ -3,10 +3,14 @@ package com.example.ssloc.services;
 import com.example.ssloc.models.ManuModel;
 import com.example.ssloc.models.MsgModel;
 import com.example.ssloc.models.PlanoModel;
+import com.example.ssloc.models.UsuarioCompletoModel;
 import com.example.ssloc.models.UsuarioModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ServiceApi {
@@ -34,4 +38,7 @@ public interface ServiceApi {
 
     @POST("apagarplano")
     Call<MsgModel>apagarPlano(@Body PlanoModel planoModel);
+
+    @GET("todosusuarios")
+    Call<List<UsuarioCompletoModel>>listarUsuarios();
 }

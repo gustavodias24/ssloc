@@ -2,8 +2,13 @@ package com.example.ssloc.models;
 
 import android.net.Uri;
 
-public class ManuModel {
+import java.io.Serializable;
+
+public class ManuModel{
     String data, login;
+
+    public ManuModel() {
+    }
 
     public ManuModel(String data, String login, int status, Uri imageTroca, Uri imageRecibo) {
         this.data = data;

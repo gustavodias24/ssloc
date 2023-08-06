@@ -21,6 +21,14 @@
             tools:srcCompat="@raw/logoparada" />
 
         <ImageView
+            android:id="@+id/detalhePlano"
+            android:layout_width="match_parent"
+            android:layout_height="138dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@raw/plano900" />
+
+        <ImageView
             android:id="@+id/qrcode"
             android:layout_width="match_parent"
             android:layout_height="400dp"

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.ExibirUsuarioActivity">
+
+        <TextView
+            android:id="@+id/dadosGeraisText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="dados gerais"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/verCNH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver foto cnh"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/verComprovante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ver comprovante de residência"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>

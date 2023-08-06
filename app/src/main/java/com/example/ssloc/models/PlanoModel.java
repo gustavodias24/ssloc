@@ -2,9 +2,10 @@ package com.example.ssloc.models;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PlanoModel {
+public class PlanoModel{
     String msg,login;
     Boolean ativo, error;
     int tipo;

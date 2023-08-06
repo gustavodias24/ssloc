@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -28,6 +29,10 @@ import com.example.ssloc.models.UsuarioModel;
 import com.example.ssloc.services.ServiceApi;
 import com.example.ssloc.services.ServiceCep;
 import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,8 +69,8 @@ public class CadastroActivity extends AppCompatActivity {
                 "",
                 "",
                 null,
-                null,
-                null,
+                "",
+                "",
                 0
         );
 
@@ -129,8 +134,8 @@ public class CadastroActivity extends AppCompatActivity {
                                     if(!senha2.isEmpty()){
                                         if ( senha2.equals(senha1)){
                                             usuarioModel.setSenha(senha1);
-                                            if (usuarioModel.getFotoCNH() != null){
-                                                if(usuarioModel.getFotoComprovante() != null){
+                                            if (!usuarioModel.getFotoCNH().isEmpty()){
+                                                if(!usuarioModel.getFotoComprovante().isEmpty()){
                                                     criarCadastro();
                                                 }else{
                                                     Toast.makeText(getApplicationContext(), "Envie a foto do comprovante!",Toast.LENGTH_LONG).show();
@@ -188,9 +193,7 @@ public class CadastroActivity extends AppCompatActivity {
             // Exibir o nome da imagem no TextView
             vb.cnhNameText.setText(imageName);
 
-            // Agora, você pode usar a URI da imagem (selectedImageUri) para fazer o upload via Retrofit
-            usuarioModel.setFotoCNH(selectedImageUri);
-            // ou qualquer outra operação necessária.
+            usuarioModel.setFotoCNH(imageToBase64(selectedImageUri));
         }
         else if (requestCode == REQUEST_COMPROVANTE_IMAGE_SELECT && resultCode == RESULT_OK && data != null){
             // Obter a URI da imagem selecionada
@@ -202,11 +205,23 @@ public class CadastroActivity extends AppCompatActivity {
             // Exibir o nome da imagem no TextView
             vb.comprovanteNameText.setText(imageName);
 
-            // Agora, você pode usar a URI da imagem (selectedImageUri) para fazer o upload via Retrofit
-            usuarioModel.setFotoComprovante(selectedImageUri);
-            // ou qualquer outra operação necessária.
+            usuarioModel.setFotoComprovante(imageToBase64(selectedImageUri));
         }
     }
+
+    private String imageToBase64(Uri imageUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+            return Base64.encodeToString(bytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
     // Método para obter o nome do arquivo da URI
     @SuppressLint("Range")
     private String getFileNameFromUri(Uri uri) {

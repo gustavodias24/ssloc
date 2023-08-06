@@ -1,14 +1,20 @@
 package com.example.ssloc.models;
-
-import android.content.SharedPreferences;
-import android.net.Uri;
-
 import java.io.Serializable;
 
 public class UsuarioModel{
     String login, email, telefone, validadeCNH, senha = "";
     CepModel cep;
-    Uri fotoCNH, fotoComprovante;
+    String fotoCNH, fotoComprovante;
+
+    @Override
+    public String toString() {
+        return "-Dados Gerais- " + "\n"+
+                "login: '" + login + "\n" +
+                "email:'" + email + "\n" +
+                "telefone: '" + telefone + "\n" +
+                "validadeCNH: '" + validadeCNH + "\n" +
+                "numeroCasa: " + numeroCasa ;
+    }
 
     int numeroCasa;
 
@@ -27,7 +33,7 @@ public class UsuarioModel{
     public UsuarioModel() {
     }
 
-    public UsuarioModel(String login, String email, String telefone, String validadeCNH, String senha, CepModel cep, Uri fotoCNH, Uri fotoComprovante, int numeroCasa) {
+    public UsuarioModel(String login, String email, String telefone, String validadeCNH, String senha, CepModel cep, String fotoCNH, String fotoComprovante, int numeroCasa) {
         this.login = login;
         this.email = email;
         this.telefone = telefone;
@@ -87,19 +93,19 @@ public class UsuarioModel{
         this.cep = cep;
     }
 
-    public Uri getFotoCNH() {
+        public String getFotoCNH() {
         return fotoCNH;
     }
 
-    public void setFotoCNH(Uri fotoCNH) {
+    public void setFotoCNH(String fotoCNH) {
         this.fotoCNH = fotoCNH;
     }
 
-    public Uri getFotoComprovante() {
+    public String getFotoComprovante() {
         return fotoComprovante;
     }
 
-    public void setFotoComprovante(Uri fotoComprovante) {
+    public void setFotoComprovante(String fotoComprovante) {
         this.fotoComprovante = fotoComprovante;
     }
 }

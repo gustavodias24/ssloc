@@ -34,4 +34,13 @@ public class CepModel {
     public void setLocalidade(String localidade) {
         this.localidade = localidade;
     }
+
+    @Override
+    public String toString() {
+        return "-Endereço-" + "\n"+
+                "logradouro: '" + logradouro + "\n" +
+                "complemento: '" + complemento + "\n" +
+                "bairro: '" + bairro + "\n" +
+                "localidade: '" + localidade;
+    }
 }

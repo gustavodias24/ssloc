@@ -50,11 +50,15 @@ public class MeusPlanosActivity extends AppCompatActivity {
      private ActivityMeusPlanosBinding vb;
      private static final int REQUEST_COMPROVANTE_IMAGE_SELECT = 1;
 
-     private String validade1ano = "Válido por 1 ano";
+     private String validade1ano = "VENCE EM 30 DIAS";
+     private int detalhePlanoAnual = R.raw.plano900;
      private String CHAVE_900_REIAS = "00020126580014br.gov.bcb.pix0136626e4a9a-0501-462c-9edd-869f6290b71a5204000053039865406900.005802BR5914PEDRO DE SOUSA6009Sao Paulo62070503***6304A074";
-     private String validade1semana = "Válido por 1 semana";
+     private int detalhePlanoSemanal = R.raw.plano240;
+     private String validade1semana = "VENCE EM 7 DIAS";
      private String CHAVE_240_REAIS = "00020126360014br.gov.bcb.pix0114+55969910179255204000053039865406240.005802BR5914PEDRO DE SOUSA6009Sao Paulo62070503***6304CC9A";
-     private String validade1dia = "Válido por 1 dia";
+
+    private int detalhePlanoDiario = R.raw.plano40;
+     private String validade1dia = "VENCE EM 24 HORAS";
      private String CHAVE_40_REAIS = "00020126360014br.gov.bcb.pix0114+5596991017925520400005303986540540.005802BR5914PEDRO DE SOUSA6009Sao Paulo62070503***6304EB58";
 
      private int altenardor = 0;
@@ -190,6 +194,7 @@ public class MeusPlanosActivity extends AppCompatActivity {
     private void alternarEntrePlanos(int n){
          switch (n){
              case 0:
+                 Picasso.get().load(detalhePlanoAnual).into(vb.detalhePlano);
                  vb.qrcode.setOnClickListener( qrView -> {
                      clip.setPrimaryClip(ClipData.newPlainText("pix", CHAVE_900_REIAS));
                      Toast.makeText(this, "Pix copiado para área de transferência", Toast.LENGTH_LONG).show();
@@ -203,6 +208,7 @@ public class MeusPlanosActivity extends AppCompatActivity {
                  vb.validadeText.setText(validade1ano);
                  break;
              case 1:
+                 Picasso.get().load(detalhePlanoSemanal).into(vb.detalhePlano);
                  vb.validadeText.setText(validade1semana);
                  vb.qrcode.setOnClickListener( qrView -> {
                      clip.setPrimaryClip(ClipData.newPlainText("pix",CHAVE_240_REAIS));
@@ -216,6 +222,7 @@ public class MeusPlanosActivity extends AppCompatActivity {
                  );
                  break;
              case 2:
+                 Picasso.get().load(detalhePlanoDiario).into(vb.detalhePlano);
                  vb.validadeText.setText(validade1dia);
                  vb.qrcode.setOnClickListener( qrView -> {
                      clip.setPrimaryClip(ClipData.newPlainText("pix",CHAVE_40_REAIS));
