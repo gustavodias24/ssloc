@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true" android:layout_height="match_parent" android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.ContratoActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="129dp"
+            tools:srcCompat="@raw/logoparada" />
+
+        <ImageView
+            android:id="@+id/atencaoContrato"
+            android:layout_width="match_parent"
+            android:layout_height="129dp"
+            tools:srcCompat="@raw/atencaocontrato" />
+
+        <ImageView
+            android:id="@+id/contrato"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            tools:srcCompat="@raw/contrato" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Li e aceito os termos."
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/singdasf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Assinatura:"
+            android:textColor="#000000" />
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/assinaturaPad"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:penColor="@color/black" />
+
+        <Button
+            android:id="@+id/proseguirBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#000000"
+            android:text="Concluir assinatura"
+            android:textColor="#FFEB3B" />
+
+        <TextView
+            android:id="@+id/singdasf2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="AGORA VOCÊ PODE IR PARA PAGAMENTOS"
+            android:textColor="#000000" />
+
+    </LinearLayout></ScrollView>

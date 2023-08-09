@@ -37,5 +37,107 @@
             android:layout_height="wrap_content"
             android:text="ver comprovante de residência"
             android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:id="@+id/layoutPlano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/planoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/verComprovantePlano"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver comprovante de pagamento" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ativarPlano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ativar"
+                    android:textColor="#4CAF50" />
+
+                <Button
+                    android:id="@+id/entrarEmContato2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:text="entrar em contato"
+                    android:textColor="#FF0000" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutManu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/manuText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/verRecibo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver Recibo" />
+
+            <Button
+                android:id="@+id/verTroca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver troca" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/aprovarManu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Aprovar"
+                    android:textColor="#4CAF50" />
+
+                <Button
+                    android:id="@+id/entrarEmContato1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:text="entrar em contato"
+                    android:textColor="#FF0000" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

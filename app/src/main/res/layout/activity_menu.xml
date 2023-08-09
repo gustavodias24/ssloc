@@ -22,12 +22,34 @@
             tools:srcCompat="@raw/logoparada" />
 
         <Button
+            android:id="@+id/veiculosBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="veículos"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
             android:id="@+id/meusPlanosBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#000000"
             android:padding="16dp"
-            android:text="Meus planos e Pagamentos"
+            android:text="Pagamentos"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/contratoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Contrato"
             android:textColor="#FEFE01"
             android:textStyle="bold"
             app:iconTint="#000000" />
@@ -39,6 +61,16 @@
             android:backgroundTint="#000000"
             android:padding="16dp"
             android:text="Manutenção"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+        <Button
+            android:id="@+id/entregaBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Entrega de veículo"
             android:textColor="#FEFE01"
             android:textStyle="bold"
             app:iconTint="#000000" />

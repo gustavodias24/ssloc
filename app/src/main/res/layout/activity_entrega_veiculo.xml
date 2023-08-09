@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".activitys.EntregaVeiculoActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="117dp"
+            android:layout_weight="1"
+            tools:srcCompat="@raw/logoparada" />
+
+        <ImageView
+            android:id="@+id/atencao"
+            android:layout_width="wrap_content"
+            android:layout_height="270dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            tools:srcCompat="@raw/atencaoentrega" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:text="AGENDAR RETIRADA DO VEÍCULO NO LINK ABAIXO. "
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnzap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="#000000"
+            android:drawableLeft="@drawable/baseline_local_phone_24"
+            android:gravity="center"
+            android:text="Link direto para whatsapp"
+            android:textColor="#FEFE01"
+            app:iconTint="#FEFE03" />
+    </LinearLayout>
+</ScrollView>

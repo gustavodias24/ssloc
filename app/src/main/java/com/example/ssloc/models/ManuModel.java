@@ -10,7 +10,7 @@ public class ManuModel{
     public ManuModel() {
     }
 
-    public ManuModel(String data, String login, int status, Uri imageTroca, Uri imageRecibo) {
+    public ManuModel(String data, String login, int status, String imageTroca, String imageRecibo) {
         this.data = data;
         this.login = login;
         this.status = status;
@@ -19,7 +19,7 @@ public class ManuModel{
     }
 
     int status;
-    Uri imageTroca, imageRecibo;
+    String imageTroca, imageRecibo;
 
     public ManuModel(String login) {
         this.login = login;
@@ -49,19 +49,19 @@ public class ManuModel{
         this.status = status;
     }
 
-    public Uri getImageTroca() {
+    public String getImageTroca() {
         return imageTroca;
     }
 
-    public void setImageTroca(Uri imageTroca) {
+    public void setImageTroca(String imageTroca) {
         this.imageTroca = imageTroca;
     }
 
-    public Uri getImageRecibo() {
+    public String getImageRecibo() {
         return imageRecibo;
     }
 
-    public void setImageRecibo(Uri imageRecibo) {
+    public void setImageRecibo(String imageRecibo) {
         this.imageRecibo = imageRecibo;
     }
 }

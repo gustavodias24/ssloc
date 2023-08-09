@@ -38,8 +38,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         UsuarioCompletoModel usuarioModel = lista.get(position);
 
             holder.nome.setText("Usuário: " + usuarioModel.getUsuarioModel().getLogin());
-            if ( usuarioModel.getPlano() != null){
-                if ( usuarioModel.getPlano().getAtivo() ){
+            if ( usuarioModel.getTemplano()){
+                if ( !usuarioModel.getPlano().getAtivo() ){
                     holder.comprovante.setText("Comprovante: Em análise");
                 }else{
                     holder.comprovante.setText("Comprovante: Ativo");
@@ -48,7 +48,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
                 holder.comprovante.setText("Comprovante: vazio");
             }
 
-            if ( usuarioModel.getManu() != null){
+            if ( usuarioModel.getTemmanu()){
                 switch (usuarioModel.getManu().getStatus()){
                     case 1:
                         holder.manutencao.setText("Manutenção: Em análise");

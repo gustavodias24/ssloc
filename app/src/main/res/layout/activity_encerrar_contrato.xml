@@ -27,10 +27,11 @@
             android:layout_height="187dp"
             tools:srcCompat="@raw/termoencerracao" />
 
-        <include
-            layout="@layout/contrato_encerramento"
+        <ImageView
+            android:id="@+id/encerramentocontrato"
             android:layout_width="match_parent"
-            android:layout_height="500dp" />
+            android:layout_height="wrap_content"
+            tools:srcCompat="@raw/recisaocontrato" />
 
         <TextView
             android:id="@+id/textView2"

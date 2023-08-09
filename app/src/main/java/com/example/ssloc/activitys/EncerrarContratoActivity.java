@@ -63,6 +63,7 @@ public class EncerrarContratoActivity extends AppCompatActivity {
 
         Picasso.get().load(R.raw.logoparada).into(vb.logo);
         Picasso.get().load(R.raw.termoencerracao).into(vb.encerramento);
+        Picasso.get().load(R.raw.recisaocontrato).into(vb.encerramentocontrato);
 
         criar_dialog_encerrado();
         criarAlertCarregando();

@@ -3,6 +3,9 @@ package com.example.ssloc.activitys;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -19,6 +22,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -39,7 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ManuntecaoActivity extends AppCompatActivity {
     
-    private Uri imgTroca, imgRecibo = null;
+    private String imgTroca, imgRecibo = "null";
     private Dialog dialog_carregando;
     private Retrofit retrofitCadastro;
     private ServiceApi serviceApi;
@@ -136,7 +140,7 @@ public class ManuntecaoActivity extends AppCompatActivity {
             String imageName = getFileNameFromUri(selectedImageUri);
             vb.trocaText.setText(imageName);
 
-            imgTroca = data.getData();
+            imgTroca = imageToBase64(selectedImageUri);
 
         }
         else if (requestCode == REQUEST_RECIBO_IMAGE_SELECT && resultCode == RESULT_OK && data != null){
@@ -146,11 +150,23 @@ public class ManuntecaoActivity extends AppCompatActivity {
             // Obter o nome do arquivo da imagem selecionada
             String imageName = getFileNameFromUri(selectedImageUri);
 
-            imgRecibo = data.getData();
+            imgRecibo = imageToBase64(selectedImageUri);
             // Exibir o nome da imagem no TextView
             vb.rebicoText.setText(imageName);
 
         }
+    }
+
+    private String imageToBase64(Uri imageUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+            return Base64.encodeToString(bytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

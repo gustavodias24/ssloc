@@ -28,6 +28,7 @@ import com.example.ssloc.services.ServiceApi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,7 +61,7 @@ public class AdminActivity extends AppCompatActivity {
         criarAlertCarregando();
         criarRetrofitCadastro();
 
-        getSupportActionBar().setTitle("Admin");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Admin");
 
         listarTodosUsuarios();
 
@@ -74,11 +75,19 @@ public class AdminActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
             UsuarioCompletoModel usuarioClicado = lista.get(position);
             Intent i = new Intent(getApplicationContext(), ExibirUsuarioActivity.class);
-            i.putExtra("endereco", usuarioClicado.getUsuarioModel().getCep().toString());
-            i.putExtra("dados", usuarioClicado.getUsuarioModel().toString());
-            i.putExtra("fotocnh", usuarioClicado.getUsuarioModel().getFotoCNH());
-            i.putExtra("fotocomprovante", usuarioClicado.getUsuarioModel().getFotoComprovante());
-            startActivity(i);
+//            i.putExtra("endereco", usuarioClicado.getUsuarioModel().getCep().toString());
+//            i.putExtra("dados", usuarioClicado.getUsuarioModel().toString());
+//            i.putExtra("fotocnh", usuarioClicado.getUsuarioModel().getFotoCNH());
+//            i.putExtra("fotocomprovante", usuarioClicado.getUsuarioModel().getFotoComprovante());
+            i.putExtra("login", usuarioClicado.getUsuarioModel().getLogin());
+
+            try{
+                startActivity(i);
+
+            }catch (Exception e){
+                Log.d("uaisir", "onItemClick: " + e.getMessage());
+            }
+
             }
 
             @Override

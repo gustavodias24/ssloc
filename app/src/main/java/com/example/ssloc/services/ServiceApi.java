@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ServiceApi {
 
@@ -41,4 +42,13 @@ public interface ServiceApi {
 
     @GET("todosusuarios")
     Call<List<UsuarioCompletoModel>>listarUsuarios();
+
+    @GET("todosusuarios")
+    Call<List<UsuarioCompletoModel>>umUsuarioCompleto(@Query("login") String login);
+
+    @POST("ativarplano")
+    Call<MsgModel>ativarPlano(@Body PlanoModel planoModel);
+
+    @POST("aprovarmanu")
+    Call<MsgModel>aprovarManu(@Body ManuModel manuModel);
 }

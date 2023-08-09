@@ -10,14 +10,14 @@ public class PlanoModel{
     Boolean ativo, error;
     int tipo;
     String data;
-    Uri comprovantePagamento;
+    String comprovantePagamento;
 
     public PlanoModel(String login, int tipo) {
         this.login = login;
         this.tipo = tipo;
     }
 
-    public PlanoModel(String msg, String login, Boolean ativo, Boolean error, int tipo, String data, Uri comprovantePagamento) {
+    public PlanoModel(String msg, String login, Boolean ativo, Boolean error, int tipo, String data, String comprovantePagamento) {
         this.msg = msg;
         this.login = login;
         this.ativo = ativo;
@@ -80,11 +80,11 @@ public class PlanoModel{
         this.data = data;
     }
 
-    public Uri getComprovantePagamento() {
+    public String getComprovantePagamento() {
         return comprovantePagamento;
     }
 
-    public void setComprovantePagamento(Uri comprovantePagamento) {
+    public void setComprovantePagamento(String comprovantePagamento) {
         this.comprovantePagamento = comprovantePagamento;
     }
 }

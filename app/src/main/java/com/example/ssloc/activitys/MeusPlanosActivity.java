@@ -3,6 +3,9 @@ package com.example.ssloc.activitys;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -21,6 +24,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -134,11 +138,23 @@ public class MeusPlanosActivity extends AppCompatActivity {
                             false,
                             altenardor,
                             currentDate,
-                            selectedImageUri
+                            imageToBase64(selectedImageUri)
                     )
             );
 
         }
+    }
+
+    private String imageToBase64(Uri imageUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes);
+            return Base64.encodeToString(bytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     private void criarPlano(PlanoModel planoModel){
@@ -251,12 +267,30 @@ public class MeusPlanosActivity extends AppCompatActivity {
                  if ( response.isSuccessful() ){
                      if ( planoRequest.getAtivo() ){
                          vb.enviarBtn.setText(planoRequest.getMsg());
+                         vb.enviarBtn.setTextColor(Color.YELLOW);
                          vb.enviarBtn.setTextColor(Color.parseColor("#FEFE01"));
                          dialog_carregando.dismiss();
                      }else{
-                         Toast.makeText(MeusPlanosActivity.this, planoRequest.getMsg() , Toast.LENGTH_LONG).show();
-                         vb.enviarBtn.setText(planoRequest.getMsg());
-                         vb.enviarBtn.setTextColor(Color.RED);
+                         if ( planoRequest.getMsg().equals("EM ANÁLISE")){
+                             vb.enviarBtn.setTextColor(Color.GREEN);
+                             vb.enviarBtn.setText(planoRequest.getMsg());
+                         }else{
+                             String tempoPagamento;
+                             switch (altenardor){
+                                 case 0:
+                                     tempoPagamento = "MENSAL";
+                                     break;
+                                 case 1:
+                                     tempoPagamento = "SEMANAL";
+                                     break;
+                                 default:
+                                        tempoPagamento = "DIÁRIA";
+                             }
+                             vb.enviarBtn.setTextColor(Color.RED);
+                             vb.enviarBtn.setText(planoRequest.getMsg() + tempoPagamento);
+                         }
+                         Toast.makeText(MeusPlanosActivity.this, planoRequest.getMsg().replace("-", "") , Toast.LENGTH_LONG).show();
+
                          dialog_carregando.dismiss();
                      }
                  }else{

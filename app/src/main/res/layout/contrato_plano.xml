@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Contrato de Locação de Automóvel As partes têm, entre si, justo e acertado o presente contrato de locação de uma moto, que se regerá pelas cláusulas seguintes e pelas condições descritas abaixo. Do Objeto Do Contrato: Cláusula 1ª - O presente contrato tem como Objeto, a locação de uma moto, conforme seleção no aplicativo SSLOC. O veículo escolhido está todo quitado e sem multas. Sendo assim o locatário ficará responsável por qualquer multa vindoura a partir da data da assinatura do presente contrato até o dia em que este estiver válido. Do Uso Cláusula 2ª - O Automóvel, objeto deste contrato, será utilizado exclusivamente para serviço do locatório, não sendo permitido o seu uso por terceiros sob pena de rescisão contratual e o pagamento de multa prevista na cláusula 7ª, e também ficará proibido utilizar o veículo se estiver sob o efeito de Álcool, podendo ser recolhido o veículo pelo locador. Da Devolução Cláusula 3ª - O Locatário deverá devolver o automóvel ao locador nas mesmas condições em que recebeu, ou seja, em perfeitas condições de uso, respondendo pelos danos ou prejuízos causados. Do Prazo e Valor Cláusula 4ª - A presente locação terá o lapso temporal de longo a curto prazo, podendo ser quebrado pelo locador a qualquer momento se houver necessidade. Parágrafo Primeiro - O período de locação se dá com início a partir da assinatura do presente contrato, com prazo indeterminado para fim. Parágrafo Segundo - O valor da locação será o escolhido pelo locador no aplicativo SSLOC. Cláusula 5ª - Se o Locatário não restituir o automóvel quando solicitado deverá pagar o valor estipulado pelo locador enquanto detiver em seu poder, e responderá por qualquer dano que o automóvel sofrer mesmo se proveniente de caso de furto. Da Rescisão Cláusula 6ª - O presente Contrato poderá ser renovado e prolongado mediante acordo entre as partes. Cláusula 7ª - O descumprimento de qualquer das cláusulas por parte dos contratantes ensejará a rescisão desse instrumento e o devido pagamento de multa pela parte inadimplente no valor de R$240,00. Cláusula 8ª - Fica sob a responsabilidade do locatário, a troca de óleo da moto a cada 7 (sete) dias úteis, bem como as câmeras de ar da moto em caso de furos e rasgos, sob comprovação mediante recibo/comprovante de pagamento. Por estarem assim justos e contratados, firmam o presente instrumento em duas vias de igual teor. Ao fazer a retirada da moto no local indicado pela locadora, o locador deverá assinar contrato físico, mediante apresentação da CNH."
+            android:textColor="#FFFFFF" />
+
+
+
+    </LinearLayout>
+</ScrollView>

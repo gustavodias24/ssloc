@@ -2,9 +2,19 @@ package com.example.ssloc.models;
 
 
 public class UsuarioCompletoModel{
-    UsuarioModel usuario;
-    PlanoModel plano;
-    ManuModel manu;
+    Boolean templano,temmanu;
+
+    public Boolean getTemplano() {
+        return templano;
+    }
+
+    public Boolean getTemmanu() {
+        return temmanu;
+    }
+
+    public UsuarioModel usuario;
+    public PlanoModel plano = new PlanoModel();
+    public ManuModel manu = new ManuModel();
 
     public UsuarioModel getUsuarioModel() {
         return usuario;
