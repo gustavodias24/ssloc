@@ -64,6 +64,6 @@ public interface ServiceApi {
 
 
     @POST("atualizarveiculo")
-    Call<List<VeiculoModel>>atualizarveiculos(@Body VeiculoModel veiculoModel);
+    Call<MsgModel>atualizarveiculos(@Body VeiculoModel veiculoModel);
 
 }

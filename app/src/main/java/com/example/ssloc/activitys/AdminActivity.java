@@ -50,6 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AdminActivity extends AppCompatActivity {
     private Dialog dialog_adicionar;
+    private Dialog dialog_atualizar;
     private TextView nomeImagem;
     private VeiculoModel veiculoModel;
     private static final int REQUEST_VEICULO_IMAGE_SELECT = 1;
@@ -101,8 +102,8 @@ public class AdminActivity extends AppCompatActivity {
         recyclerVeiculos.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), recyclerVeiculos, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                VeiculoModel veiculoClicado = lista2.get(position);
-                Toast.makeText(AdminActivity.this, veiculoClicado.descricao, Toast.LENGTH_SHORT).show();
+                atualizarVeiculo(lista2.get(position));
+
             }
 
             @Override
@@ -230,7 +231,7 @@ public class AdminActivity extends AppCompatActivity {
 
     private void listarTodosVeiculos(){
         dialog_carregando.show();
-        lista.clear();
+        lista2.clear();
 
         serviceApi.pegarveiculos().enqueue(new Callback<List<VeiculoModel>>() {
             @Override
@@ -315,6 +316,61 @@ public class AdminActivity extends AppCompatActivity {
 
         dialog_adicionar = b.create();
         dialog_adicionar.show();
+
+    }
+
+    public void atualizarVeiculo(VeiculoModel veiculoClicado){
+            AlertDialog.Builder b = new AlertDialog.Builder(AdminActivity.this);
+            AdicionarVeiculoAdminBinding addBinding = AdicionarVeiculoAdminBinding.inflate(getLayoutInflater());
+
+            addBinding.nomeImagem.setVisibility(View.GONE);
+            addBinding.enviarImagem.setVisibility(View.GONE);
+
+            addBinding.editTextDescricao.setText(veiculoClicado.getDescricao());
+            if ( veiculoClicado.disponivel ){
+                addBinding.radioDisponivel.setChecked(true);
+            }else{
+                addBinding.radioIndisponivel.setChecked(true);
+            }
+
+            addBinding.ok.setText("Editar");
+            addBinding.ok.setOnClickListener( okView -> {
+                VeiculoModel veiculoEditado = new VeiculoModel();
+                veiculoEditado.setDescricao(addBinding.editTextDescricao.getText().toString());
+                if ( addBinding.radioDisponivel.isChecked() ){
+                    veiculoEditado.setDisponivel(true);
+                }else{
+                    veiculoEditado.setDisponivel(false);
+                }
+
+                dialog_carregando.show();
+
+                veiculoEditado.set_id(veiculoClicado.get_id());
+                serviceApi.atualizarveiculos(veiculoEditado).enqueue(new Callback<MsgModel>() {
+                    @Override
+                    public void onResponse(Call<MsgModel> call, Response<MsgModel> response) {
+                        if ( response.isSuccessful() ){
+                            Toast.makeText(AdminActivity.this, "Atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            listarTodosVeiculos();
+                            dialog_carregando.dismiss();
+                        }else{
+                            Toast.makeText(AdminActivity.this, "Erro de conexão, tente mais tarde.", Toast.LENGTH_SHORT).show();
+                            dialog_carregando.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MsgModel> call, Throwable t) {
+                        Toast.makeText(AdminActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        dialog_carregando.dismiss();
+                    }
+                });
+            });
+
+            b.setView(addBinding.getRoot());
+
+            dialog_atualizar = b.create();
+            dialog_atualizar.show();
 
     }
 

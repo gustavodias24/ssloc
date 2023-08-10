@@ -4,6 +4,9 @@ public class VeiculoModel {
     public Boolean disponivel;
     public String foto, descricao, _id;
 
+    public VeiculoModel() {
+    }
+
     public String get_id() {
         return _id;
     }
