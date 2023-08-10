@@ -75,6 +75,10 @@ public class MenuActivity extends AppCompatActivity {
         vb.entregaBtn.setOnClickListener( entregaView ->{
             startActivity(new Intent(getApplicationContext(), EntregaVeiculoActivity.class));
         });
+
+        vb.veiculosBtn.setOnClickListener( veiculoView -> {
+            startActivity(new Intent(getApplicationContext(), VeiculoActivity.class));
+        });
     }
 
 

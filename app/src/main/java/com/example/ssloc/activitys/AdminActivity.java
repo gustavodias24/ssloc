@@ -151,7 +151,7 @@ public class AdminActivity extends AppCompatActivity {
         recyclerUsers.setAdapter(adapter);
 
         vb.fabAtt.setOnClickListener( attView -> {
-            if ( vb.textViewTipo.equals("usuários")){
+            if ( vb.textViewTipo.getText().toString().equals("usuários")){
                 listarTodosUsuarios();
             }else{
                 adicionarVeiculos();
