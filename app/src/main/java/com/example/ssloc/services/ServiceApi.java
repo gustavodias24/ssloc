@@ -5,6 +5,7 @@ import com.example.ssloc.models.MsgModel;
 import com.example.ssloc.models.PlanoModel;
 import com.example.ssloc.models.UsuarioCompletoModel;
 import com.example.ssloc.models.UsuarioModel;
+import com.example.ssloc.models.VeiculoModel;
 
 import java.util.List;
 
@@ -51,4 +52,18 @@ public interface ServiceApi {
 
     @POST("aprovarmanu")
     Call<MsgModel>aprovarManu(@Body ManuModel manuModel);
+
+    @POST("criarveiculo")
+    Call<MsgModel>criarveiculo(@Body VeiculoModel veiculoModel);
+
+    @GET("pegarveiculo")
+    Call<List<VeiculoModel>>pegarveiculos();
+
+    @GET("pegarveiculo")
+    Call<List<VeiculoModel>>pegarveiculosdisponiveis(@Query("disponivel") Boolean disponivel);
+
+
+    @POST("atualizarveiculo")
+    Call<List<VeiculoModel>>atualizarveiculos(@Body VeiculoModel veiculoModel);
+
 }

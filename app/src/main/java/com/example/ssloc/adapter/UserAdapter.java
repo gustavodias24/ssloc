@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ssloc.R;
 import com.example.ssloc.models.UsuarioCompletoModel;
-import com.example.ssloc.models.UsuarioModel;
 
 import java.util.List;
 
@@ -37,33 +36,33 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         UsuarioCompletoModel usuarioModel = lista.get(position);
 
-            holder.nome.setText("Usuário: " + usuarioModel.getUsuarioModel().getLogin());
-            if ( usuarioModel.getTemplano()){
-                if ( !usuarioModel.getPlano().getAtivo() ){
-                    holder.comprovante.setText("Comprovante: Em análise");
+
+                holder.nome.setText("Usuário: " + usuarioModel.getUsuarioModel().getLogin());
+
+                if ( usuarioModel.getTemplano()){
+                    if ( !usuarioModel.getPlano().getAtivo() ){
+                        holder.comprovante.setText("Comprovante: Em análise");
+                    }else{
+                        holder.comprovante.setText("Comprovante: Ativo");
+                    }
                 }else{
-                    holder.comprovante.setText("Comprovante: Ativo");
+                    holder.comprovante.setText("Comprovante: vazio");
                 }
-            }else{
-                holder.comprovante.setText("Comprovante: vazio");
-            }
 
-            if ( usuarioModel.getTemmanu()){
-                switch (usuarioModel.getManu().getStatus()){
-                    case 1:
-                        holder.manutencao.setText("Manutenção: Em análise");
-                        break;
-                    case 2:
-                        holder.manutencao.setText("Manutenção: Confirmado");
-                        break;
-                    default:
-                        holder.manutencao.setText("Manutenção: vazio");
+                if ( usuarioModel.getTemmanu()){
+                    switch (usuarioModel.getManu().getStatus()){
+                        case 1:
+                            holder.manutencao.setText("Manutenção: Em análise");
+                            break;
+                        case 2:
+                            holder.manutencao.setText("Manutenção: Confirmado");
+                            break;
+                        default:
+                            holder.manutencao.setText("Manutenção: vazio");
+                    }
+                }else{
+                    holder.manutencao.setText("Manutenção: vazio");
                 }
-            }else{
-                holder.manutencao.setText("Manutenção: vazio");
-            }
-
-
     }
 
     @Override
