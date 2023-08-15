@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.ssloc.ImageUtils;
 import com.example.ssloc.databinding.ActivityCadastroBinding;
 import com.example.ssloc.databinding.LayoutCarregandoBinding;
 import com.example.ssloc.models.CepModel;
@@ -193,7 +194,7 @@ public class CadastroActivity extends AppCompatActivity {
             // Exibir o nome da imagem no TextView
             vb.cnhNameText.setText(imageName);
 
-            usuarioModel.setFotoCNH(imageToBase64(selectedImageUri));
+            usuarioModel.setFotoCNH(ImageUtils.imageToBase64Comprimida(selectedImageUri, getApplicationContext()));
         }
         else if (requestCode == REQUEST_COMPROVANTE_IMAGE_SELECT && resultCode == RESULT_OK && data != null){
             // Obter a URI da imagem selecionada
@@ -205,22 +206,9 @@ public class CadastroActivity extends AppCompatActivity {
             // Exibir o nome da imagem no TextView
             vb.comprovanteNameText.setText(imageName);
 
-            usuarioModel.setFotoComprovante(imageToBase64(selectedImageUri));
+            usuarioModel.setFotoComprovante(ImageUtils.imageToBase64Comprimida(selectedImageUri, getApplicationContext()));
         }
     }
-
-    private String imageToBase64(Uri imageUri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(imageUri);
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            return Base64.encodeToString(bytes, Base64.DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
 
     // Método para obter o nome do arquivo da URI
     @SuppressLint("Range")
@@ -325,7 +313,8 @@ public class CadastroActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MsgModel> call, Throwable t) {
-
+                Toast.makeText(CadastroActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog_carregando.dismiss();
             }
         });
     }

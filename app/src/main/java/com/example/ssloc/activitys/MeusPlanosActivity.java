@@ -26,8 +26,10 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.ssloc.ImageUtils;
 import com.example.ssloc.R;
 import com.example.ssloc.databinding.ActivityMeusPlanosBinding;
 import com.example.ssloc.databinding.LayoutCarregandoBinding;
@@ -79,6 +81,8 @@ public class MeusPlanosActivity extends AppCompatActivity {
         preferences = getSharedPreferences("UsuarioPreferences", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
+        configurarDatas();
+
         criarRetrofitCadastro();
         criarAlertCarregando();
 
@@ -115,6 +119,16 @@ public class MeusPlanosActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void configurarDatas(){
+         if ( preferences.getString("inicioPagamento", null) != null){
+             vb.textDatas.setVisibility(View.VISIBLE);
+             vb.textDatas.setText(String.format(
+                     "Pagamento realizado em %s\n\nPróximo pagamento %s",
+                     preferences.getString("inicioPagamento", ""),
+                     preferences.getString("fimPagamento", "")
+             ));
+         }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -131,6 +145,28 @@ public class MeusPlanosActivity extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             String currentDate = sdf.format(calendar.getTime());
 
+            int diaVencimento = 0;
+            switch (altenardor){
+                case 0:
+                    diaVencimento = 30;
+                    break;
+                case 1:
+                    diaVencimento = 7;
+                    break;
+                default:
+                    diaVencimento = 1;
+            }
+
+            Calendar futureCalendar = Calendar.getInstance();
+            futureCalendar.add(Calendar.DAY_OF_MONTH, diaVencimento);
+            SimpleDateFormat fsdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            String nextDate = fsdf.format(futureCalendar.getTime());
+
+            editor.putString("inicioPagamento", currentDate);
+            editor.putString("fimPagamento", nextDate);
+            editor.apply();
+
+            configurarDatas();
             criarPlano(
                     new PlanoModel( "",
                             preferences.getString("DadosUsuario", ""),
@@ -138,23 +174,11 @@ public class MeusPlanosActivity extends AppCompatActivity {
                             false,
                             altenardor,
                             currentDate,
-                            imageToBase64(selectedImageUri)
+                            ImageUtils.imageToBase64Comprimida(selectedImageUri, getApplicationContext())
                     )
             );
 
         }
-    }
-
-    private String imageToBase64(Uri imageUri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(imageUri);
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            return Base64.encodeToString(bytes, Base64.DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     private void criarPlano(PlanoModel planoModel){

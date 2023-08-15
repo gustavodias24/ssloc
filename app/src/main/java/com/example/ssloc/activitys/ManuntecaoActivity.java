@@ -24,8 +24,10 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.ssloc.ImageUtils;
 import com.example.ssloc.R;
 import com.example.ssloc.databinding.ActivityManuntecaoBinding;
 import com.example.ssloc.databinding.LayoutCarregandoBinding;
@@ -48,6 +50,7 @@ public class ManuntecaoActivity extends AppCompatActivity {
     private Retrofit retrofitCadastro;
     private ServiceApi serviceApi;
     private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     private static final int REQUEST_TROCA_IMAGE_SELECT = 1;
     private static final int REQUEST_RECIBO_IMAGE_SELECT = 2;
     private ActivityManuntecaoBinding vb;
@@ -59,6 +62,9 @@ public class ManuntecaoActivity extends AppCompatActivity {
         setContentView(vb.getRoot());
 
         preferences = getSharedPreferences("UsuarioPreferences", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        configurarDatas();
 
         criarRetrofitCadastro();
         criarAlertCarregando();
@@ -95,11 +101,27 @@ public class ManuntecaoActivity extends AppCompatActivity {
         });
     }
 
+    public void configurarDatas(){
+        if ( preferences.getString("inicioManutencaoData", null) != null){
+            vb.textDatas.setVisibility(View.VISIBLE);
+            vb.textDatas.setText(String.format(
+                    "Manutenção realizada em %s\n\nPróxima manutenção %s",
+                    preferences.getString("inicioManutencaoData", ""),
+                    preferences.getString("fimManutencaoData", "")
+            ));
+        }
+    }
+
     private void criarManu(){
         // Obter a data atual
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String currentDate = sdf.format(calendar.getTime());
+
+        Calendar futureCalendar = Calendar.getInstance();
+        futureCalendar.add(Calendar.DAY_OF_MONTH, 7);
+        SimpleDateFormat fsdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String nextDate = fsdf.format(futureCalendar.getTime());
 
         serviceApi.criarManu(
                 new ManuModel(
@@ -115,6 +137,10 @@ public class ManuntecaoActivity extends AppCompatActivity {
                 MsgModel msgModel = response.body();
                 if ( response.isSuccessful() ){
                     Toast.makeText(ManuntecaoActivity.this, msgModel.getMsg(), Toast.LENGTH_SHORT).show();
+                    editor.putString("inicioManutencaoData",  currentDate);
+                    editor.putString("fimManutencaoData", nextDate);
+                    editor.apply();
+                    configurarDatas();
                     verificarStatusManu();
                 }else{
                     Toast.makeText(ManuntecaoActivity.this, "Erro de conexão, tente mais tarde.", Toast.LENGTH_SHORT).show();
@@ -140,7 +166,7 @@ public class ManuntecaoActivity extends AppCompatActivity {
             String imageName = getFileNameFromUri(selectedImageUri);
             vb.trocaText.setText(imageName);
 
-            imgTroca = imageToBase64(selectedImageUri);
+            imgTroca = ImageUtils.imageToBase64Comprimida(selectedImageUri, getApplicationContext());
 
         }
         else if (requestCode == REQUEST_RECIBO_IMAGE_SELECT && resultCode == RESULT_OK && data != null){
@@ -150,24 +176,13 @@ public class ManuntecaoActivity extends AppCompatActivity {
             // Obter o nome do arquivo da imagem selecionada
             String imageName = getFileNameFromUri(selectedImageUri);
 
-            imgRecibo = imageToBase64(selectedImageUri);
+            imgRecibo = ImageUtils.imageToBase64Comprimida(selectedImageUri, getApplicationContext());
             // Exibir o nome da imagem no TextView
             vb.rebicoText.setText(imageName);
 
         }
     }
 
-    private String imageToBase64(Uri imageUri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(imageUri);
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            return Base64.encodeToString(bytes, Base64.DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if ( item.getItemId() == android.R.id.home){

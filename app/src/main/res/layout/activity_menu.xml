@@ -33,23 +33,23 @@
             app:iconTint="#000000" />
 
         <Button
-            android:id="@+id/meusPlanosBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#000000"
-            android:padding="16dp"
-            android:text="Pagamentos"
-            android:textColor="#FEFE01"
-            android:textStyle="bold"
-            app:iconTint="#000000" />
-
-        <Button
             android:id="@+id/contratoBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#000000"
             android:padding="16dp"
             android:text="Contrato"
+            android:textColor="#FEFE01"
+            android:textStyle="bold"
+            app:iconTint="#000000" />
+
+        <Button
+            android:id="@+id/meusPlanosBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:padding="16dp"
+            android:text="Pagamentos"
             android:textColor="#FEFE01"
             android:textStyle="bold"
             app:iconTint="#000000" />

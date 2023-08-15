@@ -66,4 +66,10 @@ public interface ServiceApi {
     @POST("atualizarveiculo")
     Call<MsgModel>atualizarveiculos(@Body VeiculoModel veiculoModel);
 
+    @POST("deleteveiculo")
+    Call<MsgModel>deletarVeiculo(@Body VeiculoModel veiculoModel);
+
+    @POST("deleteusuario")
+    Call<MsgModel>deleteUsuario(@Body UsuarioModel usuarioModel);
+
 }

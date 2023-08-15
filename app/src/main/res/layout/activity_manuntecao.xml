@@ -28,6 +28,18 @@
             tools:srcCompat="@raw/atencaooleo" />
 
         <TextView
+            android:id="@+id/textDatas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#000000"
+            android:padding="16dp"
+            android:text="Manutenção realizada em 11/08/1999\n\nPróxima manutenção 11/09/2005"
+            android:textColor="#FFEB3B"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/trocaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -66,7 +66,7 @@ public class MenuActivity extends AppCompatActivity {
 
         vb.contratoBtn.setOnClickListener( contratoView ->{
             if ( !preferences.getBoolean("contrato", false)){
-                startActivity(new Intent(getApplicationContext(), ContratoActivity.class));
+                startActivity(new Intent(getApplicationContext(), ContratoNovoActivity.class));
             }else{
                 Toast.makeText(this, "Você já aceitou o contrato!", Toast.LENGTH_SHORT).show();
             }

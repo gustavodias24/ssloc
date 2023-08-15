@@ -3,35 +3,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true" android:layout_height="match_parent" android:layout_width="match_parent">
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
-        tools:context=".activitys.ContratoActivity">
+        tools:context=".activitys.ContratoNovoActivity">
+
 
         <ImageView
-            android:id="@+id/logo"
+            android:id="@+id/luego"
             android:layout_width="match_parent"
-            android:layout_height="129dp"
+            android:layout_height="130dp"
             tools:srcCompat="@raw/logoparada" />
 
         <ImageView
-            android:id="@+id/atencaoContrato"
+            android:id="@+id/atentioncontrato"
             android:layout_width="match_parent"
-            android:layout_height="129dp"
+            android:layout_height="wrap_content"
             tools:srcCompat="@raw/atencaocontrato" />
 
         <ImageView
-            android:id="@+id/contrato"
+            android:id="@+id/contraite"
             android:layout_width="match_parent"
             android:layout_height="600dp"
             tools:srcCompat="@raw/contrato" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,7 +42,7 @@
             android:textColor="#000000" />
 
         <TextView
-            android:id="@+id/singdasf"
+            android:id="@+id/assinatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -47,7 +50,7 @@
             android:textColor="#000000" />
 
         <com.github.gcacace.signaturepad.views.SignaturePad
-            android:id="@+id/assinaturaPad"
+            android:id="@+id/assinaturaDecilicinha"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:penColor="@color/black" />
@@ -70,4 +73,5 @@
             android:text="AGORA VOCÊ PODE IR PARA PAGAMENTOS"
             android:textColor="#000000" />
 
-    </LinearLayout></ScrollView>
+    </LinearLayout>
+</ScrollView>

@@ -186,7 +186,7 @@ public class VeiculoActivity extends AppCompatActivity {
             public void onResponse(Call<MsgModel> call, Response<MsgModel> response) {
                 if ( response.isSuccessful()){
                     Toast.makeText(VeiculoActivity.this, "Aceite o contrato.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), ContratoActivity.class));
+                    startActivity(new Intent(getApplicationContext(), ContratoNovoActivity.class));
                     finish();
                 }else{
                     dialog_carregando.dismiss();

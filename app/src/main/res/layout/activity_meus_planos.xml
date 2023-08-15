@@ -28,6 +28,18 @@
             android:layout_marginBottom="4dp"
             android:src="@raw/plano900" />
 
+        <TextView
+            android:id="@+id/textDatas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#000000"
+            android:padding="16dp"
+            android:text="Pagamento realizado em 11/08/1999\n\nPróximo pagamento 11/09/2005"
+            android:textColor="#FFEB3B"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/qrcode"
             android:layout_width="match_parent"
