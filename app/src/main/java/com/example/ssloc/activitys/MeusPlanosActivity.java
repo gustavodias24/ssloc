@@ -58,14 +58,14 @@ public class MeusPlanosActivity extends AppCompatActivity {
 
      private String validade1ano = "VENCE EM 30 DIAS";
      private int detalhePlanoAnual = R.raw.plano900;
-     private String CHAVE_900_REIAS = "00020126580014br.gov.bcb.pix0136626e4a9a-0501-462c-9edd-869f6290b71a5204000053039865406900.005802BR5914PEDRO DE SOUSA6009Sao Paulo62070503***6304A074";
+     private String CHAVE_900_REIAS = "00020126470014br.gov.bcb.pix0125sslocaplicativo@gmail.com5204000053039865406900.005802BR5925Karen Kellen De Jesus Sil6009Sao Paulo62070503***6304F2CC";
      private int detalhePlanoSemanal = R.raw.plano240;
      private String validade1semana = "VENCE EM 7 DIAS";
-     private String CHAVE_240_REAIS = "00020126360014br.gov.bcb.pix0114+55969910179255204000053039865406240.005802BR5914PEDRO DE SOUSA6009Sao Paulo62070503***6304CC9A";
+     private String CHAVE_240_REAIS = "00020126470014br.gov.bcb.pix0125sslocaplicativo@gmail.com5204000053039865406240.005802BR5925Karen Kellen De Jesus Sil6009Sao Paulo62070503***63048990";
 
     private int detalhePlanoDiario = R.raw.plano40;
      private String validade1dia = "VENCE EM 24 HORAS";
-     private String CHAVE_40_REAIS = "00020126360014br.gov.bcb.pix0114+5596991017925520400005303986540540.005802BR5914PEDRO DE SOUSA6009Sao Paulo62070503***6304EB58";
+     private String CHAVE_40_REAIS = "00020126470014br.gov.bcb.pix0125sslocaplicativo@gmail.com520400005303986540540.005802BR5925Karen Kellen De Jesus Sil6009Sao Paulo62070503***6304E835";
 
      private int altenardor = 0;
      ClipboardManager clip;
